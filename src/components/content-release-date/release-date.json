@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_content_release_date_release_dates",
+  "info": {
+    "displayName": "Release Date",
+    "icon": "calendar-day",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "date": {
+      "type": "biginteger",
+      "min": "1",
+      "max": "31"
+    },
+    "month": {
+      "type": "enumeration",
+      "enum": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
+    },
+    "year": {
+      "type": "biginteger"
+    }
+  }
+}
