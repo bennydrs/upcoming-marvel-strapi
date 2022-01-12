@@ -17,7 +17,7 @@ module.exports = {
       const numCategories = [];
       const strCategories = [];
 
-      entries?.forEach((d) => {
+      entries.forEach((d) => {
         if (isNaN(d.name)) {
           strCategories.push(d);
         } else if (d.name >= new Date().getFullYear()) {
@@ -26,7 +26,9 @@ module.exports = {
       });
 
       const categories = strCategories.concat(
-        numCategories.sort((a, b) => a.name > b.name)
+        numCategories.sort((a, b) =>
+          a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+        )
       );
       ctx.body = categories.filter((d) => d.contents.length !== 0);
     } catch (err) {
