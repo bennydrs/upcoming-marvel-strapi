@@ -21,7 +21,7 @@
       "target": "api::content.content",
       "inversedBy": "videos"
     },
-    "name": {
+    "title": {
       "type": "string"
     }
   }
