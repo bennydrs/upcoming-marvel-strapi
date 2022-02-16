@@ -52,6 +52,18 @@
     "animated": {
       "type": "boolean",
       "default": false
+    },
+    "videos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::video.video",
+      "mappedBy": "content"
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::genre.genre",
+      "inversedBy": "contents"
     }
   }
 }

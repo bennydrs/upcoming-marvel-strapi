@@ -30,7 +30,11 @@ module.exports = {
           a.name > b.name ? 1 : b.name > a.name ? -1 : 0
         )
       );
-      ctx.body = categories.filter((d) => d.contents.length !== 0);
+      const data = categories.filter((c) => c.contents.length !== 0);
+      ctx.body = data.map((d) => ({
+        id: d.id,
+        name: d.name,
+      }));
     } catch (err) {
       ctx.body = err;
     }

@@ -12,10 +12,17 @@ module.exports = {
     const entries = await strapi.db.query("api::content.content").findMany({
       populate: {
         categories: {
+          select: ["id", "name"],
           filters: category && { name: category },
         },
         image: true,
         ReleaseDate: true,
+        videos: {
+          select: ["id", "videoId"],
+        },
+        genres: {
+          select: ["id", "name"],
+        },
       },
       where: search && {
         title: {
