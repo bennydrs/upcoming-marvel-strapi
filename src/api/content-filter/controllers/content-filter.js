@@ -9,6 +9,7 @@ const uniteReleaseDate = (dataDate) =>
 module.exports = {
   index: async (ctx, next) => {
     const { category, search } = ctx.query;
+
     const entries = await strapi.db.query("api::content.content").findMany({
       populate: {
         categories: {
@@ -24,9 +25,16 @@ module.exports = {
           select: ["id", "name"],
         },
       },
-      where: search && {
-        title: {
-          $contains: search,
+      where: {
+        title: search
+          ? {
+              $contains: search,
+            }
+          : {
+              $notNull: true,
+            },
+        publishedAt: {
+          $notNull: true,
         },
       },
     });

@@ -13,6 +13,11 @@ module.exports = {
             select: ["title"],
           },
         },
+        where: {
+          publishedAt: {
+            $notNull: true,
+          },
+        },
       });
       const numCategories = [];
       const strCategories = [];
