@@ -42,33 +42,35 @@ module.exports = {
     const currentdate = new Date().toISOString().slice(0, 10);
     const dateOffset = 24 * 60 * 60 * 1000 * 1;
 
-    const data = entries.filter((data) =>
-      data.ReleaseDate && data.ReleaseDate?.date
+    // filter content yang belum tayang
+    const data = entries.filter((item) =>
+      item.ReleaseDate && item.ReleaseDate?.date
         ? new Date(
-            new Date(uniteReleaseDate(data)).toISOString().slice(0, 10)
+            new Date(uniteReleaseDate(item)).toISOString().slice(0, 10)
           ).getTime() +
             dateOffset >=
           new Date(currentdate).getTime()
-        : data
+        : item
     );
 
+    // sorting berdasarkan tanggal rilis
     const dataSorted = data.sort((a, b) => {
-      let AtoDateFormat = uniteReleaseDate(a);
-      let BtoDateFormat = uniteReleaseDate(b);
+      const AtoDateFormat = uniteReleaseDate(a);
+      const BtoDateFormat = uniteReleaseDate(b);
 
-      let secondReleaseDate = a?.ReleaseDate?.date
+      const secondReleaseDate = a.ReleaseDate?.date
         ? new Date(AtoDateFormat).getTime() / 1000 - Date.now() / 1000
         : 0;
-      let secondReleaseDateB = b?.ReleaseDate?.date
+      const secondReleaseDateB = b.ReleaseDate?.date
         ? new Date(BtoDateFormat).getTime() / 1000 - Date.now() / 1000
         : 0;
 
       // equal items sort equally
       if (secondReleaseDate === secondReleaseDateB) {
         return 0;
-      } else if (!a?.ReleaseDate?.date) {
+      } else if (!a.ReleaseDate?.date) {
         return 1;
-      } else if (!b?.ReleaseDate?.date) {
+      } else if (!b.ReleaseDate?.date) {
         return -1;
       } else {
         return secondReleaseDate < secondReleaseDateB ? -1 : 1;
