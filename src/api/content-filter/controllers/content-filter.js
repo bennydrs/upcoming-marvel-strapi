@@ -3,8 +3,15 @@
 /**
  * A set of functions called "actions" for `content-filter`
  */
-const uniteReleaseDate = (dataDate) =>
-  `${dataDate.ReleaseDate?.date} ${dataDate.ReleaseDate?.month} ${dataDate.ReleaseDate?.year}`;
+const uniteReleaseDate = (dataDate) => {
+  const date = dataDate.ReleaseDate?.date;
+  const month = dataDate.ReleaseDate?.month;
+  const year = dataDate.ReleaseDate?.year;
+
+  return `${!date && year ? "31" : date} ${
+    !month && year ? "December" : month
+  } ${year}`;
+};
 
 module.exports = {
   index: async (ctx, next) => {
@@ -40,7 +47,7 @@ module.exports = {
     });
 
     const currentdate = new Date().toISOString().slice(0, 10);
-    const dateOffset = 24 * 60 * 60 * 1000 * 1;
+    const dateOffset = 24 * 60 * 60 * 1000 * 1; // offset 1 hari
 
     // filter content yang belum tayang
     const data = entries.filter((item) =>
@@ -55,25 +62,30 @@ module.exports = {
 
     // sorting berdasarkan tanggal rilis
     const dataSorted = data.sort((a, b) => {
-      const AtoDateFormat = uniteReleaseDate(a);
-      const BtoDateFormat = uniteReleaseDate(b);
+      const AtoDateFormat = a.ReleaseDate?.year && uniteReleaseDate(a);
+      const BtoDateFormat = b.ReleaseDate?.year && uniteReleaseDate(b);
 
-      const secondReleaseDate = a.ReleaseDate?.date
-        ? new Date(AtoDateFormat).getTime() / 1000 - Date.now() / 1000
+      // konversi ke time dengan kondisi tertertu
+      const secondReleaseDateA = a.ReleaseDate?.date
+        ? new Date(AtoDateFormat).getTime()
+        : a.ReleaseDate?.year
+        ? new Date(`31 December ${a.ReleaseDate?.year}`).getTime()
         : 0;
       const secondReleaseDateB = b.ReleaseDate?.date
-        ? new Date(BtoDateFormat).getTime() / 1000 - Date.now() / 1000
+        ? new Date(BtoDateFormat).getTime()
+        : b.ReleaseDate?.year
+        ? new Date(`31 December ${b.ReleaseDate?.year}`).getTime()
         : 0;
 
       // equal items sort equally
-      if (secondReleaseDate === secondReleaseDateB) {
+      if (secondReleaseDateA === secondReleaseDateB) {
         return 0;
-      } else if (!a.ReleaseDate?.date) {
+      } else if (!secondReleaseDateA) {
         return 1;
-      } else if (!b.ReleaseDate?.date) {
+      } else if (!secondReleaseDateB) {
         return -1;
       } else {
-        return secondReleaseDate < secondReleaseDateB ? -1 : 1;
+        return secondReleaseDateA < secondReleaseDateB ? -1 : 1;
       }
     });
 
