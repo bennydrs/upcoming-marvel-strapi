@@ -26,7 +26,7 @@ module.exports = {
         image: true,
         ReleaseDate: true,
         videos: {
-          select: ["id", "videoId"],
+          select: ["id", "title", "videoId"],
         },
         genres: {
           select: ["id", "name"],
