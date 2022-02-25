@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "linkdownloads",
+  "info": {
+    "singularName": "linkdownload",
+    "pluralName": "linkdownloads",
+    "displayName": "linkdownload"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    }
+  }
+}
