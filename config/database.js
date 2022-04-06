@@ -1,4 +1,3 @@
-const path = require("path");
 const parse = require("pg-connection-string").parse;
 
 module.exports = ({ env }) => {
@@ -23,15 +22,28 @@ module.exports = ({ env }) => {
   }
   return {
     connection: {
-      client: "sqlite",
+      client: "postgres",
       connection: {
-        filename: path.join(
-          __dirname,
-          "..",
-          env("DATABASE_FILENAME", ".tmp/data.db")
-        ),
+        host: "localhost",
+        port: 5432,
+        database: "upcomingmarvel",
+        user: "postgres",
+        password: "postgres",
       },
-      useNullAsDefault: true,
+      debug: false,
     },
   };
+  // return {
+  //   connection: {
+  //     client: "sqlite",
+  //     connection: {
+  //       filename: path.join(
+  //         __dirname,
+  //         "..",
+  //         env("DATABASE_FILENAME", ".tmp/data.db")
+  //       ),
+  //     },
+  //     useNullAsDefault: true,
+  //   },
+  // };
 };
