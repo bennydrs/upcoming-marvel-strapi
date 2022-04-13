@@ -17,7 +17,10 @@
     "@strapi/strapi": "4.0.2",
     "pg": "^8.7.1",
     "pg-connection-string": "^2.5.0",
-    "sqlite3": "5.0.2"
+    "sqlite3": "5.0.2",
+    "strapi-plugin-redis": "^1.0.0-alpha.2",
+    "strapi-plugin-rest-cache": "^4.2.4",
+    "strapi-provider-rest-cache-redis": "^4.2.4"
   },
   "author": {
     "name": "Benny Ds"
