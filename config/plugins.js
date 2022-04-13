@@ -15,12 +15,7 @@ module.exports = ({ env }) => {
           },
         },
       },
-    };
-  }
 
-  if (env("NODE_ENV") === "production" || env("NODE_ENV") !== "production") {
-    return {
-      // cache with redis
       redis: {
         config: {
           connections: {
@@ -63,4 +58,25 @@ module.exports = ({ env }) => {
       },
     };
   }
+
+  return {
+    "rest-cache": {
+      config: {
+        provider: {
+          name: "memory",
+          options: {
+            max: 32767,
+            maxAge: 3600,
+          },
+        },
+        strategy: {
+          contentTypes: [
+            "api::category.category",
+            "api::content.content",
+            "api::genre.genre",
+          ],
+        },
+      },
+    },
+  };
 };
