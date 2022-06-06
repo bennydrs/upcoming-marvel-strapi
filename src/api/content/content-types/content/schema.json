@@ -20,7 +20,10 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images", "videos"]
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
     },
     "categories": {
       "type": "relation",
@@ -30,7 +33,11 @@
     },
     "type": {
       "type": "enumeration",
-      "enum": ["Movie", "Series"],
+      "enum": [
+        "Movie",
+        "Series",
+        "Short"
+      ],
       "required": true
     },
     "description": {
