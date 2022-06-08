@@ -20,7 +20,6 @@
     "sqlite3": "5.0.2",
     "strapi-plugin-redis": "^1.0.0-alpha.2",
     "strapi-plugin-rest-cache": "^4.2.4",
-    "strapi-provider-rest-cache-memory": "^4.2.4",
     "strapi-provider-rest-cache-redis": "^4.2.4"
   },
   "author": {

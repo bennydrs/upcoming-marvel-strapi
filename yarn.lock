@@ -10094,13 +10094,6 @@ strapi-plugin-rest-cache@^4.2.4:
     chalk "^4.1.2"
     debug "^4.3.4"
 
-strapi-provider-rest-cache-memory@^4.2.4:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/strapi-provider-rest-cache-memory/-/strapi-provider-rest-cache-memory-4.2.4.tgz#65496cf14c5e79b93a37f66708300197ed41d3d3"
-  integrity sha512-W8mkl5chvLMj4wfcle7U2CzwdEBN4TkJTQzRWkK7hQSLpACQ438yZsULkUFdxFjymN+FC9k34A5ET9tOce8Q1A==
-  dependencies:
-    cache-manager "^3.6.0"
-
 strapi-provider-rest-cache-redis@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/strapi-provider-rest-cache-redis/-/strapi-provider-rest-cache-redis-4.2.4.tgz#7aaf20d385cf474d359604e65b26eb7d70fc8e6c"
